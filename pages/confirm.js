@@ -9,8 +9,8 @@ const Confirm = () => {
     
     const router = useRouter();
     const { pickUp, dropOff } = router.query;
-    const [pick, setPick] = useState();
-    const [drop, setDrop] = useState();
+    const [pick, setPick] = useState([0,0]);
+    const [drop, setDrop] = useState([0,0]);
     const getPickupCordinate = (pickUp) =>{
         
         const token = "pk.eyJ1IjoidmlkeXVzaCIsImEiOiJja3ZseHYyNW0yd2RyMm9tbGplaDMzNTZoIn0.WQthA2MNcF5D1j3PUImYdA";
@@ -47,7 +47,7 @@ const Confirm = () => {
         getPickupCordinate(pickUp);
         getDropofCordinate(dropOff);
       
-    },[])
+    },[pickUp,dropOff])
 
     
     return (
@@ -63,9 +63,12 @@ const Confirm = () => {
                 dropOff={drop}
             />
             <RidesContainer>
-                <RideSelector />
+                <RideSelector 
+                 pickup={pick}
+                 dropOff={drop}
+                 />
                 <ConfirmButtonContainer>
-                    Confirm LocberX
+                    Confirm Uber
                 </ConfirmButtonContainer>
             </RidesContainer>
         </Wrapper>
